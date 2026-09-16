@@ -1,49 +1,42 @@
 #include <iostream>
 using namespace std;
 
+// Class Definition
+class Student {
+public:
+    int rollNumber;
+    int marks;
+
+    void display() {
+        cout << "Roll Number: " << rollNumber << endl;
+        cout << "Marks: " << marks << endl;
+    }
+};
+
 int main() {
-    int sales[2][3];
-    int (*rowPtr)[3] = sales;
+    // Creating objects
+    Student s1;
+    Student s2;
 
-    // 1. Input: Read six non-negative values using pointer notation
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 3; j++) {
-            do {
-                cout << "Enter element [" << i << "][" << j << "]: ";
-                cin >> *(*(rowPtr + i) + j); 
-            } while (*(*(rowPtr + i) + j) < 0);
-        }
-    }
+    // Assigning values using the dot operator
+    s1.rollNumber = 1;
+    s1.marks = 75;
 
-    // 1. Output: Display 2D array elements in a two-row table format
-    cout << "\n--- Sales Table ---\n";
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 3; j++) {
-            cout << *(*(rowPtr + i) + j) << "\t";
-        }
-        cout << endl;
-    }
+    s2.rollNumber = 2;
+    s2.marks = 90;
 
-    // 2. Calculate and display row (Branch) totals
-    cout << "\n--- Branch Totals ---\n";
-    for (int i = 0; i < 2; i++) {
-        int branchTotal = 0;
-        for (int j = 0; j < 3; j++) {
-            branchTotal += *(*(rowPtr + i) + j);
-        }
-        cout << "Total for Branch " << i + 1 << ": " << branchTotal << "\n";
-    }
+    // Displaying initial values
+    cout << "--- Initial Objects ---" << endl;
+    s1.display();
+    s2.display();
 
-    // 2. Calculate and display column (Day) totals
-    cout << "\n--- Day Totals ---\n";
-    for (int j = 0; j < 3; j++) {
-        int dayTotal = 0;
-        for (int i = 0; i < 2; i++) {
-            dayTotal += *(*(rowPtr + i) + j);
-        }
-        cout << "Total for Day " << j + 1 << ": " << dayTotal << "\n";
-    }
+    // Changing only s1.marks to 80
+    s1.marks = 80;
+
+    // Displaying values after modification
+    cout << "\n--- After Modifying s1.marks ---" << endl;
+    s1.display();
+    s2.display();
 
     return 0;
 }
-
